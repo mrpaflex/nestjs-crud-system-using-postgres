@@ -21,13 +21,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
 
     @Column({type: 'varchar', length: 50})
     password: string;
-    
-    @Column({
-        type: "enum",
-        enum: ["male", "female", "unspecify"],
-        default: "unspecify"
-    })
-    gender: string
+
 
 
 

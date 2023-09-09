@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { IsAlphanumeric, IsEmail, IsInt, IsNotEmpty, IsString, Matches, MinLength, isEnum } from "class-validator";
+import { IsAlphanumeric, IsEmail, IsInt, IsNotEmpty, IsString, IsStrongPassword, Matches, MinLength, isEnum, isStrongPassword } from "class-validator";
 
 
 const passwordRegEx =   /^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,20}$/;
@@ -11,7 +11,7 @@ export class CreateUserDto {
     name: string;
 
     @IsNotEmpty()
-    @IsAlphanumeric(null, {message: 'Username does not allow other than alpha numeric chars.'})
+   // @IsAlphanumeric( {message: 'Username does not allow other than alpha numeric chars.'})
     @MinLength(3, {message: 'username must have atleast 3 charcters'})
     username: string;
     
@@ -19,7 +19,7 @@ export class CreateUserDto {
     @IsEmail(null, {message: 'please provide a valid email address'})
     email: string;
 
-    @IsInt()
+    @IsInt()z
     age: number;
 
     @IsString()
@@ -30,6 +30,9 @@ export class CreateUserDto {
     @Matches(passwordRegEx, {
         message: 'password must contain atleast one special character'
     })
-    @Exclude()
+
+    @IsString()
+    @IsStrongPassword()
+    
     password: string;
 }

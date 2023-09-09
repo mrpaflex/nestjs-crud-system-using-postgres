@@ -1,4 +1,5 @@
 
+import { Exclude } from "class-transformer";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -18,22 +19,10 @@ export class UserEntity {
     @Column({type: 'int'})
     age: number;
 
+    @Exclude()
     @Column({type: 'varchar', length: 50})
     password: string;
-    
-    @Column({
-        type: "enum",
-        enum: ["male", "female", "unspecify"],
-        default: "unspecify"
-    })
-    gender: string
+
 
 
 }
-
-// export enum gender{
-//     female = 'f',
-//     male = 'm',
-//     unspecify = 'u'
-
-// }
